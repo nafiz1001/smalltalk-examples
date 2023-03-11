@@ -8,6 +8,15 @@ Class {
 }
 
 { #category : #tests }
+PositionTest >> testInitialize [
+	| position |
+	position := Position new.
+	self assert: position line equals: 0.
+	self assert: position column equals: 0.
+	self assert: position offset equals: 0
+]
+
+{ #category : #tests }
 PositionTest >> testSetters [
 
 	| position |
