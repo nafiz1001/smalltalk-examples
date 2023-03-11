@@ -14,6 +14,13 @@ Position >> column [
 	^column 
 ]
 
+{ #category : #initialization }
+Position >> initialize [
+    line := 0.
+    column := 0.
+    offset := 0.
+]
+
 { #category : #accessing }
 Position >> line [
 	^line

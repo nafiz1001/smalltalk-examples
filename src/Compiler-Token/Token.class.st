@@ -8,6 +8,11 @@ Class {
 	#category : #'Compiler-Token'
 }
 
+{ #category : #'error handling' }
+Token class >> subclassResponsibility [
+	self error: 'Subclass should implement this method.'
+]
+
 { #category : #accessing }
 Token >> literal [
 	^literal
