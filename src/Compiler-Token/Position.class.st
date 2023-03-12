@@ -15,6 +15,12 @@ Position >> column [
 ]
 
 { #category : #initialization }
+Position >> column: aColumn [
+	column := aColumn.
+	^self
+]
+
+{ #category : #initialization }
 Position >> initialize [
     line := 0.
     column := 0.
@@ -26,25 +32,19 @@ Position >> line [
 	^line
 ]
 
+{ #category : #initialization }
+Position >> line: aLine [
+	line := aLine.
+	^self
+]
+
 { #category : #accessing }
 Position >> offset [
 	^offset
 ]
 
 { #category : #initialization }
-Position >> setColumn: aColumn [
-	column := aColumn.
-	^self
-]
-
-{ #category : #initialization }
-Position >> setLine: aLine [
-	line := aLine.
-	^self
-]
-
-{ #category : #initialization }
-Position >> setOffset: aOffset [
+Position >> offset: aOffset [
 	offset := aOffset.
 	^self
 ]

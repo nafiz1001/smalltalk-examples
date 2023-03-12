@@ -18,19 +18,19 @@ Token >> literal [
 	^literal
 ]
 
+{ #category : #initialization }
+Token >> literal: aLiteral [
+	literal := aLiteral.
+	^self
+]
+
 { #category : #accessing }
 Token >> position [
 	^position
 ]
 
 { #category : #initialization }
-Token >> setLiteral: aLiteral [
-	literal := aLiteral.
-	^self
-]
-
-{ #category : #initialization }
-Token >> setPosition: aPosition [
+Token >> position: aPosition [
 	position := aPosition.
 	^self
 ]

@@ -11,7 +11,9 @@ Class {
 TokenTest >> testSetters [
 	|token position|
 	position := Position new.
-	token := Token new setLiteral: 'bob'; setPosition: position.
+	token := Token new
+		literal: 'bob';
+		position: position.
 	self assert: token literal equals: 'bob'.
 	self assert: token position == position.
 ]
