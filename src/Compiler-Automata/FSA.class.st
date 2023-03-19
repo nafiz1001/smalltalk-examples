@@ -18,7 +18,7 @@ FSA class >> startState: aStartState finalStates: someFinalStates states: someSt
 
 { #category : #testing }
 FSA >> isFinalState [
-	^finalStates includesAll: states
+	^states includesAny: finalStates
 ]
 
 { #category : #accessing }
