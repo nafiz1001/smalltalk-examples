@@ -9,6 +9,14 @@ Class {
 	#category : #'Compiler-Token'
 }
 
+{ #category : #'instance initialization' }
+Position class >> line: aLine column: aColumn offset: aOffset [
+	^self new
+		setLine: aLine;
+		setColumn: aColumn;
+		setOffset: aOffset
+]
+
 { #category : #accessing }
 Position >> column [
 	^column 

@@ -8,6 +8,16 @@ Class {
 }
 
 { #category : #tests }
+PositionTest >> testConstruction [
+	
+	| position |
+	position := Position line: 1 column: 2 offset: 3.
+	self assert: position line equals: 1.
+	self assert: position column equals: 2.
+	self assert: position offset equals: 3
+]
+
+{ #category : #tests }
 PositionTest >> testInitialize [
 	| position |
 	position := Position new.

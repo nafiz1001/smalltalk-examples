@@ -8,6 +8,13 @@ Class {
 	#category : #'Compiler-Token'
 }
 
+{ #category : #'instance initialization' }
+Token class >> literal: aLiteral position: aPosition [
+	^self new
+		setLiteral: aLiteral;
+		setPosition: aPosition
+]
+
 { #category : #'error handling' }
 Token class >> subclassResponsibility [
 	self error: 'Subclass should implement this method.'

@@ -8,6 +8,13 @@ Class {
 	#category : #'Compiler-Automata'
 }
 
+{ #category : #'instance initialization' }
+Edge class >> condition: aCondition nextState: aState [
+	^self new
+		setCondition: aCondition;
+		setNextState: aState
+]
+
 { #category : #accessing }
 Edge >> condition [
 	^condition 

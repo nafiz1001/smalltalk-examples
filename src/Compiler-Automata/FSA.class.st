@@ -4,14 +4,21 @@ Class {
 	#instVars : [
 		'startState',
 		'finalStates',
-		'state'
+		'states'
 	],
 	#category : #'Compiler-Automata'
 }
 
+{ #category : #'instance initialization' }
+FSA class >> startState: aStartState finalStates: someFinalStates states: someStates [
+	^self new
+		setStartState: aStartState;
+		setFinalStates: someFinalStates
+]
+
 { #category : #testing }
 FSA >> isFinalState [
-	^finalStates includes: state
+	^finalStates includesAll: states
 ]
 
 { #category : #accessing }
@@ -21,7 +28,7 @@ FSA >> nextState: alphabet [
 
 { #category : #starting }
 FSA >> reset [
-	state := startState.
+	states := Array with: startState.
 	^self
 ]
 
@@ -34,11 +41,11 @@ FSA >> setFinalStates: someFinalStates [
 { #category : #initialization }
 FSA >> setStartState: aStartState [
 	startState := aStartState.
-	state := startState.
+	states := Array with: startState.
 	^self
 ]
 
 { #category : #accessing }
-FSA >> state [
-	^state
+FSA >> states [
+	^states
 ]

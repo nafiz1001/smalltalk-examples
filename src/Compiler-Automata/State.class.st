@@ -8,6 +8,13 @@ Class {
 	#category : #'Compiler-Automata'
 }
 
+{ #category : #'instance initialization' }
+State class >> name: aName edges: someEdges [
+	^self new
+		setName: aName;
+		setEdges: someEdges
+]
+
 { #category : #accessing }
 State >> edges [
 	^edges
