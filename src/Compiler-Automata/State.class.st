@@ -9,6 +9,11 @@ Class {
 }
 
 { #category : #'instance initialization' }
+State class >> name: aName [
+	^self name: aName edges: #()
+]
+
+{ #category : #'instance initialization' }
 State class >> name: aName edges: someEdges [
 	^self new
 		setName: aName;

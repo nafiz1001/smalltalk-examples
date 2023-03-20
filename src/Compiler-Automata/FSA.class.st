@@ -10,10 +10,12 @@ Class {
 }
 
 { #category : #'instance initialization' }
-FSA class >> startState: aStartState finalStates: someFinalStates states: someStates [
+FSA class >> startState: aStartState finalStates: someFinalStates [
 	^self new
 		setStartState: aStartState;
-		setFinalStates: someFinalStates
+		setFinalStates: someFinalStates;
+		reset.
+	
 ]
 
 { #category : #testing }
@@ -22,8 +24,14 @@ FSA >> isFinalState [
 ]
 
 { #category : #accessing }
-FSA >> nextState: alphabet [
-	self subclassResponsibility 
+FSA >> nextStates: alphabet [
+	| edges nextEdges nextStates |
+	edges := states collect: [ :state | state edges ].
+	edges := edges flattened.
+	nextEdges := edges select: [ :edge | edge condition value: alphabet ].
+	nextStates := nextEdges collect: [ :edge | edge nextState ].
+	states := nextStates.
+	^states
 ]
 
 { #category : #starting }
@@ -35,13 +43,14 @@ FSA >> reset [
 { #category : #initialization }
 FSA >> setFinalStates: someFinalStates [
 	finalStates := someFinalStates.
+	self reset.
 	^self
 ]
 
 { #category : #initialization }
 FSA >> setStartState: aStartState [
 	startState := aStartState.
-	states := Array with: startState.
+	self reset.
 	^self
 ]
 
