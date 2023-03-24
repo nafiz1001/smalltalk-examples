@@ -29,13 +29,19 @@ KeywordTokeniser class >> pattern: aPattern [
 ]
 
 { #category : #testing }
-KeywordTokeniser >> isValid [
+KeywordTokeniser >> isDone [
 	^dfa isFinalState
+]
+
+{ #category : #testing }
+KeywordTokeniser >> isValid [
+	^dfa state isNil not
 ]
 
 { #category : #abstract }
 KeywordTokeniser >> putChar: aChar [
-	^dfa nextState: aChar
+	dfa nextState: aChar.
+	^self isValid
 ]
 
 { #category : #initialization }

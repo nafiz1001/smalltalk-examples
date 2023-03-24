@@ -8,8 +8,13 @@ Class {
 }
 
 { #category : #testing }
-Tokeniser >> isValid [
+Tokeniser >> isDone [
 	self subclassResponsibility 
+]
+
+{ #category : #testing }
+Tokeniser >> isValid [
+	self subclassResponsibility
 ]
 
 { #category : #abstract }

@@ -6,12 +6,13 @@ Class {
 
 { #category : #accessing }
 DFA >> nextState: alphabet [
-	| newStates |
-	newStates := self nextStates: alphabet.
-	^newStates first
+	self nextStates: alphabet.
+	^self state
 ]
 
 { #category : #accessing }
 DFA >> state [
-	^self states first
+	| currStates |
+	currStates := self states.
+	^currStates isEmpty ifFalse: [ currStates first ] ifTrue: [ nil ]
 ]
