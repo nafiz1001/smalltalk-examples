@@ -1,9 +1,6 @@
 Class {
 	#name : #KeywordTokeniser,
-	#superclass : #Tokeniser,
-	#instVars : [
-		'dfa'
-	],
+	#superclass : #DFABasedTokeniser,
 	#category : #'Compiler-Lexer'
 }
 
@@ -26,26 +23,4 @@ KeywordTokeniser class >> pattern: aPattern [
 	dfa := DFA startState: startState finalStates: (Array with: finalState).
 	instance setDFA: dfa.
 	^ instance
-]
-
-{ #category : #testing }
-KeywordTokeniser >> isDone [
-	^dfa isFinalState
-]
-
-{ #category : #testing }
-KeywordTokeniser >> isValid [
-	^dfa state isNil not
-]
-
-{ #category : #abstract }
-KeywordTokeniser >> putChar: aChar [
-	dfa nextState: aChar.
-	^self isValid
-]
-
-{ #category : #initialization }
-KeywordTokeniser >> setDFA: aDFA [
-	dfa := aDFA.
-	^self
 ]
