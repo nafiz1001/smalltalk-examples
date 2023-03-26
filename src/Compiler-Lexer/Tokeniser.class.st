@@ -1,9 +1,6 @@
 Class {
 	#name : #Tokeniser,
 	#superclass : #Object,
-	#instVars : [
-		'repeatLastChar'
-	],
 	#category : #'Compiler-Lexer'
 }
 
@@ -20,10 +17,4 @@ Tokeniser >> isValid [
 { #category : #abstract }
 Tokeniser >> putChar: aChar [
 	self subclassResponsibility 
-]
-
-{ #category : #initialization }
-Tokeniser >> setRepeatLastChar: value [
-	repeatLastChar := value.
-	^self
 ]
