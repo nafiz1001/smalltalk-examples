@@ -21,6 +21,6 @@ KeywordTokeniser class >> pattern: aPattern [
 			              prevState setEdges: (Array with: nextEdge).
 			              nextState ].
 	dfa := DFA startState: startState finalStates: (Array with: finalState).
-	instance setDFA: dfa.
+	instance mySetDFA: dfa.
 	^ instance
 ]

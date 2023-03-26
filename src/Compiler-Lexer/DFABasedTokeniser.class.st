@@ -17,14 +17,14 @@ DFABasedTokeniser >> isValid [
 	^dfa state isNil not
 ]
 
+{ #category : #initialization }
+DFABasedTokeniser >> mySetDFA: aDFA [
+	dfa := aDFA.
+	^self
+]
+
 { #category : #abstract }
 DFABasedTokeniser >> putChar: aChar [
 	dfa nextState: aChar.
 	^self isValid
-]
-
-{ #category : #initialization }
-DFABasedTokeniser >> setDFA: aDFA [
-	dfa := aDFA.
-	^self
 ]

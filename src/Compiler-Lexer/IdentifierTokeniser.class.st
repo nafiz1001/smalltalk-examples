@@ -29,10 +29,3 @@ IdentifierTokeniser >> initialize [
 		       (Array with: letterState with: letterNumberState).
 	^ self
 ]
-
-{ #category : #initialization }
-IdentifierTokeniser >> setDFA [
-
-	^ self error:
-		  self class name , ' does not need dfa to be set by setDFA'
-]
