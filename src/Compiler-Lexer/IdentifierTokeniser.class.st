@@ -32,5 +32,7 @@ IdentifierTokeniser >> initialize [
 
 { #category : #initialization }
 IdentifierTokeniser >> setDFA [
-	^self error: 'IdentifierTokeniser does not need dfa to be set by setDFA'
+
+	^ self error:
+		  self class name , ' does not need dfa to be set by setDFA'
 ]

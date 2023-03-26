@@ -32,3 +32,10 @@ CharLiteralTokeniser >> initialize [
 		       finalStates: (Array with: endQuoteState).
 	^ self
 ]
+
+{ #category : #initialization }
+CharLiteralTokeniser >> setDFA [
+
+	^ self error:
+		  self class name , ' does not need dfa to be set by setDFA'
+]
