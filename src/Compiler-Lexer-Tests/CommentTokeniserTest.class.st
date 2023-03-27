@@ -23,6 +23,29 @@ CommentTokeniserTest >> testNotComment [
 ]
 
 { #category : #tests }
+CommentTokeniserTest >> testUnfinishedComment [
+
+	| tokeniser |
+	self
+		tokeniser: (tokeniser := CommentTokeniser new)
+		putChar: $/
+		isValid: true
+		isDone: false;
+		tokeniser: tokeniser
+		putChar: $/
+		isValid: true
+		isDone: false;
+		tokeniser: tokeniser
+		putChar: $a
+		isValid: true
+		isDone: false;
+		tokeniser: tokeniser
+		putChar: $/
+		isValid: true
+		isDone: false
+]
+
+{ #category : #tests }
 CommentTokeniserTest >> testValidComment [
 
 	| tokeniser |
@@ -33,6 +56,18 @@ CommentTokeniserTest >> testValidComment [
 		isDone: false;
 		tokeniser: tokeniser
 		putChar: $/
+		isValid: true
+		isDone: false;
+		tokeniser: tokeniser
+		putChar: $/
+		isValid: true
+		isDone: false;
+		tokeniser: tokeniser
+		putChar: Character space
+		isValid: true
+		isDone: false;
+		tokeniser: tokeniser
+		putChar: Character lf
 		isValid: true
 		isDone: true
 ]
