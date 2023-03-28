@@ -39,19 +39,19 @@ Position >> offset [
 	^offset
 ]
 
-{ #category : #initialization }
+{ #category : #private }
 Position >> setColumn: aColumn [
 	column := aColumn.
 	^self
 ]
 
-{ #category : #initialization }
+{ #category : #private }
 Position >> setLine: aLine [
 	line := aLine.
 	^self
 ]
 
-{ #category : #initialization }
+{ #category : #private }
 Position >> setOffset: aOffset [
 	offset := aOffset.
 	^self

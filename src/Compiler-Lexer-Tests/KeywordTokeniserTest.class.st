@@ -26,10 +26,23 @@ KeywordTokeniserTest >> testInvalidKeywordTokeniser [
 
 { #category : #tests }
 KeywordTokeniserTest >> testValidKeywordTokeniser [
+
 	| pattern tokeniser |
 	pattern := 'int'.
-	tokeniser := KeywordTokeniser pattern: pattern.
-	self tokeniser: tokeniser putChar: $i isValid: true isDone: false.
-	self tokeniser: tokeniser putChar: $n isValid: true isDone: false.
-	self tokeniser: tokeniser putChar: $t isValid: true isDone: true.
+	tokeniser := KeywordTokeniser pattern: pattern tokenClass: nil.
+	self
+		tokeniser: tokeniser
+		putChar: $i
+		isValid: true
+		isDone: false.
+	self
+		tokeniser: tokeniser
+		putChar: $n
+		isValid: true
+		isDone: false.
+	self
+		tokeniser: tokeniser
+		putChar: $t
+		isValid: true
+		isDone: true
 ]

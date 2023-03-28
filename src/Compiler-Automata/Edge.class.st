@@ -25,13 +25,13 @@ Edge >> nextState [
 	^nextState 
 ]
 
-{ #category : #initialization }
+{ #category : #private }
 Edge >> setCondition: aCondition [
 	condition := aCondition.
 	^self
 ]
 
-{ #category : #initialization }
+{ #category : #private }
 Edge >> setNextState: aState [
 	nextState := aState.
 	^self

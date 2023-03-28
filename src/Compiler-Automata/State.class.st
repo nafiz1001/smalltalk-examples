@@ -30,13 +30,13 @@ State >> name [
 	^name
 ]
 
-{ #category : #initialization }
+{ #category : #private }
 State >> setEdges: someEdges [
 	edges := someEdges.
 	^self
 ]
 
-{ #category : #initialization }
+{ #category : #private }
 State >> setName: aName [
 	name := aName.
 	^self

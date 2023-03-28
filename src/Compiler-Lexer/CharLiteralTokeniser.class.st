@@ -18,7 +18,10 @@ CharLiteralTokeniser >> initialize [
 			 (Edge condition: [ :c | c = $' ] nextState: startQuoteState)).
 	startQuoteState setEdges: (Array
 			 with: (Edge condition: [ :c | c = $\ ] nextState: escapeState)
-			 with: (Edge condition: [ :c | c ~= $\ and: c ~= $' ] nextState: charState)).
+			 with:
+			 (Edge
+				  condition: [ :c | c ~= $\ and: c ~= $' ]
+				  nextState: charState)).
 	charState setEdges: (Array with:
 			 (Edge condition: [ :c | c = $' ] nextState: endQuoteState)).
 	escapeState setEdges: (Array with: (Edge
@@ -30,5 +33,6 @@ CharLiteralTokeniser >> initialize [
 	dfa := DFA
 		       startState: startState
 		       finalStates: (Array with: endQuoteState).
+		tokenClass := CharLiteralToken.
 	^ self
 ]

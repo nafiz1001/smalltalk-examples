@@ -9,18 +9,22 @@ Class {
 
 { #category : #tests }
 TokenTest >> testConstruction [
-	|token position|
+
+	| token position |
 	position := Position new.
 	token := Token literal: 'bob' position: position.
 	self assert: token literal equals: 'bob'.
-	self assert: token position == position.
+	self assert: token position equals: position
 ]
 
 { #category : #tests }
 TokenTest >> testSetters [
-	|token position|
+
+	| token position |
 	position := Position new.
-	token := Token new setLiteral: 'bob'; setPosition: position.
+	token := Token new
+		         setLiteral: 'bob';
+		         setPosition: position.
 	self assert: token literal equals: 'bob'.
-	self assert: token position == position.
+	self assert: token position equals: position
 ]

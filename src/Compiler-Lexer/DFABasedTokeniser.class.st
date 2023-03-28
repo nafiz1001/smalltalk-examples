@@ -8,23 +8,24 @@ Class {
 }
 
 { #category : #testing }
-DFABasedTokeniser >> isDone [
-	^dfa isFinalState
-]
-
-{ #category : #testing }
 DFABasedTokeniser >> isValid [
 	^dfa state isNil not
-]
-
-{ #category : #initialization }
-DFABasedTokeniser >> mySetDFA: aDFA [
-	dfa := aDFA.
-	^self
 ]
 
 { #category : #abstract }
 DFABasedTokeniser >> putChar: aChar [
 	dfa nextState: aChar.
 	^self isValid
+]
+
+{ #category : #private }
+DFABasedTokeniser >> setDFA: aDFA [
+	dfa := aDFA.
+	^self
+]
+
+{ #category : #testing }
+DFABasedTokeniser >> wasDone [
+
+	^ dfa wasDone
 ]

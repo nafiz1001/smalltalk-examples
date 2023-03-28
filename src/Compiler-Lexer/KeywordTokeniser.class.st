@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #accessing }
-KeywordTokeniser class >> pattern: aPattern [
+KeywordTokeniser class >> pattern: aPattern tokenClass: aTokenClass [
 
 	| instance startState finalState dfa |
 	instance := self new.
@@ -15,12 +15,15 @@ KeywordTokeniser class >> pattern: aPattern [
 		              into: [ :prevState :nextChar | 
 			              | nextState nextEdge |
 			              nextState := State name: nextChar.
-							  nextEdge := (Edge
-						                condition: [ :c | c = nextChar ]
-						                nextState: nextState).
+			              nextEdge := Edge
+				                          condition: [ :c | c = nextChar ]
+				                          nextState: nextState.
 			              prevState setEdges: (Array with: nextEdge).
 			              nextState ].
-	dfa := DFA startState: startState finalStates: (Array with: finalState).
-	instance mySetDFA: dfa.
+	dfa := DFA
+		       startState: startState
+		       finalStates: (Array with: finalState).
+	instance setDFA: dfa.
+	instance setTokenClass: aTokenClass .
 	^ instance
 ]

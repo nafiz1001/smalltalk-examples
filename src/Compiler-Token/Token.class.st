@@ -15,9 +15,9 @@ Token class >> literal: aLiteral position: aPosition [
 		setPosition: aPosition
 ]
 
-{ #category : #'error handling' }
-Token class >> subclassResponsibility [
-	self error: 'Subclass should implement this method.'
+{ #category : #'instance creation' }
+Token class >> tokeniser [
+	self subclassResponsibility
 ]
 
 { #category : #accessing }
@@ -30,13 +30,13 @@ Token >> position [
 	^position
 ]
 
-{ #category : #initialization }
+{ #category : #private }
 Token >> setLiteral: aLiteral [
 	literal := aLiteral.
 	^self
 ]
 
-{ #category : #initialization }
+{ #category : #private }
 Token >> setPosition: aPosition [
 	position := aPosition.
 	^self

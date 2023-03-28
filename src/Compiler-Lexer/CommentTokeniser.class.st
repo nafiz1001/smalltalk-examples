@@ -25,10 +25,14 @@ CommentTokeniser >> initialize [
 				  nextState: insideComment)
 			 with:
 			 (Edge condition: [ :c | c = Character lf ] nextState: endState)).
-	insideComment setEdges: (Array with: (Edge
+	insideComment setEdges: (Array
+			 with:
+			 (Edge
 				  condition: [ :c | c ~= Character lf ]
-				  nextState: insideComment) with:
+				  nextState: insideComment)
+			 with:
 			 (Edge condition: [ :c | c = Character lf ] nextState: endState)).
 	dfa := DFA startState: startState finalStates: (Array with: endState).
+	tokenClass := CommentToken .
 	^ self
 ]

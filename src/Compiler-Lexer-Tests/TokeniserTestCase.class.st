@@ -9,5 +9,5 @@ TokeniserTestCase >> tokeniser: aTokeniser putChar: aChar isValid: goodIsValid i
 
 	self assert: (aTokeniser putChar: aChar) equals: goodIsValid.
 	self assert: aTokeniser isValid equals: goodIsValid.
-	self assert: aTokeniser isDone equals: goodIsDone
+	self assert: aTokeniser wasDone equals: goodIsDone
 ]

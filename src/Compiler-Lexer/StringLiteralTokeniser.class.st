@@ -43,5 +43,6 @@ StringLiteralTokeniser >> initialize [
 	dfa := DFA
 		       startState: startState
 		       finalStates: (Array with: endQuoteState).
+		tokenClass := StringLiteralToken .
 	^ self
 ]

@@ -15,17 +15,16 @@ IdentifierTokeniser >> initialize [
 			 (Edge
 				  condition: [ :c | c isLetter or: c = $_ ]
 				  nextState: letterState)).
-	letterState setEdges: (Array with:
-	(Edge
+	letterState setEdges: (Array with: (Edge
 				  condition: [ :c | c isAlphaNumeric or: c = $_ ]
 				  nextState: letterNumberState)).
-				letterNumberState setEdges: (Array with:
-	(Edge
+	letterNumberState setEdges: (Array with: (Edge
 				  condition: [ :c | c isAlphaNumeric or: c = $_ ]
 				  nextState: letterNumberState)).
 	dfa := DFA
 		       startState: startState
 		       finalStates:
 		       (Array with: letterState with: letterNumberState).
+		tokenClass := IdentifierToken .
 	^ self
 ]
