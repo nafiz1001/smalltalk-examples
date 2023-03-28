@@ -9,19 +9,52 @@ Class {
 
 { #category : #tests }
 KeywordTokeniserTest >> testInvalidKeywordTokeniser [
+
 	| pattern tokeniser |
 	pattern := 'int'.
-	tokeniser := KeywordTokeniser pattern: pattern.
-	self tokeniser: tokeniser putChar: $i isValid: true isDone: false.
-	self tokeniser: tokeniser putChar: $z isValid: false isDone: false.
-	self tokeniser: tokeniser putChar: $n isValid: false isDone: false.
-	self tokeniser: tokeniser putChar: $t isValid: false isDone: false.
+	tokeniser := KeywordTokeniser pattern: pattern tokenClass: nil.
+	self
+		tokeniser: tokeniser
+		putChar: $i
+		isValid: true
+		isDone: false.
+	self
+		tokeniser: tokeniser
+		putChar: $z
+		isValid: false
+		isDone: false.
+	self
+		tokeniser: tokeniser
+		putChar: $n
+		isValid: false
+		isDone: false.
+	self
+		tokeniser: tokeniser
+		putChar: $t
+		isValid: false
+		isDone: false.
 
-	tokeniser := KeywordTokeniser pattern: pattern.
-	self tokeniser: tokeniser putChar: $z isValid: false isDone: false.
-	self tokeniser: tokeniser putChar: $i isValid: false isDone: false.
-	self tokeniser: tokeniser putChar: $n isValid: false isDone: false.
-	self tokeniser: tokeniser putChar: $t isValid: false isDone: false.
+	tokeniser := KeywordTokeniser pattern: pattern tokenClass: nil.
+	self
+		tokeniser: tokeniser
+		putChar: $z
+		isValid: false
+		isDone: false.
+	self
+		tokeniser: tokeniser
+		putChar: $i
+		isValid: false
+		isDone: false.
+	self
+		tokeniser: tokeniser
+		putChar: $n
+		isValid: false
+		isDone: false.
+	self
+		tokeniser: tokeniser
+		putChar: $t
+		isValid: false
+		isDone: false
 ]
 
 { #category : #tests }
