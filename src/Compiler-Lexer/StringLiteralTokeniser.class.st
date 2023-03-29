@@ -7,42 +7,31 @@ Class {
 { #category : #initialization }
 StringLiteralTokeniser >> initialize [
 
-	| startState startQuoteState charState escapeState escapedCharState endQuoteState |
-	startState := State name: 'START'.
-	startQuoteState := State name: 'start-quote'.
-	charState := State name: 'char'.
-	escapeState := State name: '\'.
-	escapedCharState := State name: 'escaped-char'.
-	endQuoteState := State name: 'end-quote'.
-	startState setEdges: (Array with:
-			 (Edge condition: [ :c | c = $" ] nextState: startQuoteState)).
-	startQuoteState setEdges: (Array
-			 with: (Edge condition: [ :c | c = $\ ] nextState: escapeState)
-			 with:
-			 (Edge
-				  condition: [ :c | c ~= $\ and: c ~= $" ]
-				  nextState: charState)).
-	charState setEdges: (Array
-			 with: (Edge condition: [ :c | c = $" ] nextState: endQuoteState)
-			 with: (Edge condition: [ :c | c = $\ ] nextState: escapeState)
-			 with:
-			 (Edge
-				  condition: [ :c | c ~= $\ and: c ~= $" ]
-				  nextState: charState)).
-	escapeState setEdges: (Array with: (Edge
-				  condition: [ :c | 
-				  #( $t $b $n $r $f $\ $" $' $\ $0 ) includes: c ]
-				  nextState: escapedCharState)).
-	escapedCharState setEdges: (Array
-			 with: (Edge condition: [ :c | c = $" ] nextState: endQuoteState)
-			 with: (Edge condition: [ :c | c = $\ ] nextState: escapeState)
-			 with:
-			 (Edge
-				  condition: [ :c | c ~= $\ and: c ~= $" ]
-				  nextState: charState)).
-	dfa := DFA
-		       startState: startState
-		       finalStates: (Array with: endQuoteState).
-		tokenClass := StringLiteralToken .
+	| dfaFactory |
+	dfaFactory := DFAFactory new
+		              from: #start to: #firstQuote transitionOnChar: $";
+		              from: #firstQuote
+		              to: #char
+		              transitionOnNotChars: #( $\ $" );
+		              from: #char to: #char transitionOnNotChars: #( $\ $" );
+		              from: #char to: #backslash transitionOnChar: $\;
+		              from: #char to: #lastQuote transitionOnChar: $";
+		              from: #firstQuote to: #backslash transitionOnChar: $\;
+		              from: #backslash
+		              to: #escapedChar
+		              transitionOnChars: #( $t $b $n $r $f $\ $" $' $0 );
+		              from: #escapedChar
+		              to: #char
+		              transitionOnNotChars: #( $\ $" );
+		              from: #escapedChar
+		              to: #backslash
+		              transitionOnChar: $\;
+		              from: #escapedChar
+		              to: #lastQuote
+		              transitionOnChar: $";
+		              setStartState: #start;
+		              setFinalStates: #( #lastQuote ).
+	dfa := dfaFactory createDFA.
+	tokenClass := StringLiteralToken.
 	^ self
 ]

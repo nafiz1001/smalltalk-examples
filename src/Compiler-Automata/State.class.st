@@ -15,9 +15,17 @@ State class >> name: aName [
 
 { #category : #'instance initialization' }
 State class >> name: aName edges: someEdges [
-	^self new
-		setName: aName;
-		setEdges: someEdges
+
+	^ self new
+		  setName: aName;
+		  setEdges: (OrderedCollection newFrom: someEdges)
+]
+
+{ #category : #private }
+State >> addEdge: aEdge [
+
+	edges add: aEdge.
+	^ self
 ]
 
 { #category : #accessing }

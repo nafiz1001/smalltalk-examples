@@ -49,6 +49,28 @@ StringLiteralTokeniserTest >> testEscapedString [
 		tokeniser: tokeniser
 		putChar: $"
 		isValid: true
+		isDone: true.
+
+	self
+	tokeniser: (tokeniser := StringLiteralTokeniser new)
+		putChar: $"
+		isValid: true
+		isDone: false;
+		tokeniser: tokeniser
+		putChar: $\
+		isValid: true
+		isDone: false;
+		tokeniser: tokeniser
+		putChar: $"
+		isValid: true
+		isDone: false;
+		tokeniser: tokeniser
+		putChar: $x
+		isValid: true
+		isDone: false;
+		tokeniser: tokeniser
+		putChar: $"
+		isValid: true
 		isDone: true
 ]
 
@@ -74,6 +96,17 @@ StringLiteralTokeniserTest >> testInvalidEscapedString [
 		isValid: true
 		isDone: false;
 		tokeniser: tokeniser
+		putChar: $a
+		isValid: false
+		isDone: false
+]
+
+{ #category : #tests }
+StringLiteralTokeniserTest >> testInvalidString [
+
+	| tokeniser |
+	self
+		tokeniser: (tokeniser := StringLiteralTokeniser new)
 		putChar: $a
 		isValid: false
 		isDone: false

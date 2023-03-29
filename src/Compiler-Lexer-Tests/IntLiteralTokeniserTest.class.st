@@ -13,10 +13,6 @@ IntLiteralTokeniserTest >> testInvalidIntLiteralToken [
 	| tokeniser |
 	self
 		tokeniser: (tokeniser := IntLiteralTokeniser new)
-		putChar: $0
-		isValid: false
-		isDone: false;
-		tokeniser: (tokeniser := IntLiteralTokeniser new)
 		putChar: $-
 		isValid: false
 		isDone: false;
@@ -32,11 +28,11 @@ IntLiteralTokeniserTest >> testValidIntLiteralToken [
 	| tokeniser |
 	self
 		tokeniser: (tokeniser := IntLiteralTokeniser new)
-		putChar: $1
+		putChar: $0
 		isValid: true
 		isDone: true;
 		tokeniser: tokeniser
-		putChar: $0
+		putChar: $1
 		isValid: true
-		isDone: true.
+		isDone: true
 ]

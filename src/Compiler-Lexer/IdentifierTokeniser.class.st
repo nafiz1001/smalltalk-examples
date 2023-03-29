@@ -7,24 +7,20 @@ Class {
 { #category : #initialization }
 IdentifierTokeniser >> initialize [
 
-	| startState letterState letterNumberState |
-	startState := State name: 'START'.
-	letterState := State name: 'letter'.
-	letterNumberState := State name: 'letter-number'.
-	startState setEdges: (Array with:
-			 (Edge
-				  condition: [ :c | c isLetter or: c = $_ ]
-				  nextState: letterState)).
-	letterState setEdges: (Array with: (Edge
-				  condition: [ :c | c isAlphaNumeric or: c = $_ ]
-				  nextState: letterNumberState)).
-	letterNumberState setEdges: (Array with: (Edge
-				  condition: [ :c | c isAlphaNumeric or: c = $_ ]
-				  nextState: letterNumberState)).
-	dfa := DFA
-		       startState: startState
-		       finalStates:
-		       (Array with: letterState with: letterNumberState).
-		tokenClass := IdentifierToken .
+	| dfaFactory |
+	dfaFactory := DFAFactory new
+		              from: #start
+		              to: #firstChar
+		              transitionOnBlock: [ :c | c isLetter or: c = $_ ];
+		              from: #firstChar
+		              to: #restChar
+		              transitionOnBlock: [ :c | c isAlphaNumeric or: c = $_ ];
+from: #restChar
+		              to: #restChar
+		              transitionOnBlock: [ :c | c isAlphaNumeric or: c = $_ ];
+		              setStartState: #start;
+		              setFinalStates: #( #firstChar #restChar ).
+	dfa := dfaFactory createDFA.
+	tokenClass := IdentifierToken.
 	^ self
 ]

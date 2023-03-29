@@ -7,17 +7,17 @@ Class {
 { #category : #initialization }
 IntLiteralTokeniser >> initialize [
 
-	| startState numberState |
-	startState := State name: 'START'.
-	numberState := State name: 'number'.
-	startState setEdges: (Array with: (Edge
-				  condition: [ :c | c isDigit and: c ~= $0 ]
-				  nextState: numberState)).
-	numberState setEdges: (Array with:
-			 (Edge condition: [ :c | c isDigit ] nextState: numberState)).
-	dfa := DFA
-		       startState: startState
-		       finalStates: (Array with: numberState).
-		tokenClass := IntLiteralToken .
+	| dfaFactory |
+	dfaFactory := DFAFactory new
+		              from: #start
+		              to: #digit
+		              transitionOnBlock: [ :c | c isDigit ];
+		              from: #digit
+		              to: #digit
+		              transitionOnBlock: [ :c | c isDigit ];
+		              setStartState: #start;
+		              setFinalStates: #( #digit ).
+	dfa := dfaFactory createDFA.
+	tokenClass := IntLiteralToken.
 	^ self
 ]

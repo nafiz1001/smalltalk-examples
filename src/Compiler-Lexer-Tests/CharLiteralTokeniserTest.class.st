@@ -23,6 +23,25 @@ CharLiteralTokeniserTest >> testEmptyChar [
 ]
 
 { #category : #tests }
+CharLiteralTokeniserTest >> testInvalidChar [
+
+	| tokeniser |
+	self
+		tokeniser: (tokeniser := CharLiteralTokeniser new)
+		putChar: $'
+		isValid: true
+		isDone: false;
+		tokeniser: tokeniser
+		putChar: $2
+		isValid: true
+		isDone: false;
+		tokeniser: tokeniser
+		putChar: $3
+		isValid: false
+		isDone: false
+]
+
+{ #category : #tests }
 CharLiteralTokeniserTest >> testInvalidEscapedCharToken [
 
 	| tokeniser |

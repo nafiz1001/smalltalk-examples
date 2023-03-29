@@ -7,23 +7,17 @@ Class {
 { #category : #accessing }
 KeywordTokeniser class >> pattern: aPattern tokenClass: aTokenClass [
 
-	| instance startState finalState dfa |
+	| dfaFactory instance |
+	dfaFactory := DFAFactory new.
+	dfaFactory
+		from: #start
+		to: aPattern first
+		transitionOnChar: aPattern first.
+		1 to: aPattern size - 1 do: [ :i | | l r | l := aPattern at: i. r := aPattern at: i + 1. dfaFactory from: l to: r transitionOnChar: r ].
+	dfaFactory setStartState: #start.
+	dfaFactory setFinalStates: (Array with: aPattern last).
 	instance := self new.
-	startState := State name: 'START'.
-	finalState := aPattern
-		              inject: startState
-		              into: [ :prevState :nextChar | 
-			              | nextState nextEdge |
-			              nextState := State name: nextChar.
-			              nextEdge := Edge
-				                          condition: [ :c | c = nextChar ]
-				                          nextState: nextState.
-			              prevState setEdges: (Array with: nextEdge).
-			              nextState ].
-	dfa := DFA
-		       startState: startState
-		       finalStates: (Array with: finalState).
-	instance setDFA: dfa.
-	instance setTokenClass: aTokenClass .
+	instance setDFA: dfaFactory createDFA.
+	instance setTokenClass: aTokenClass.
 	^ instance
 ]
